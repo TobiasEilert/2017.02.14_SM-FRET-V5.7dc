@@ -17,14 +17,14 @@
 function [movie, info, green_start, total_frames, current_movie, breakpoint] = load_movie_dualcam(file, info, acceptor_file, alex, green_start, total_frames, frame_number, current_movie, rerun, breakpoint)
 % 1. check whether the user loaded a TIF or SIF movie and find version of
 % SIF
-if rerun == 0
+%if rerun == 0
     file_type = check_file_type(file); %4.3 for SOLIS 4.3, 4.9 for SOLIS 4.9, 4.12 for SOLIS 4.12 and so on, 2 for Spooled New SIF, 3 for TIF
     % 2. check which frame is first, green excitation or red, but only for
     % alex movies and only in donor file
     if alex == 1 && acceptor_file == 0
         [green_start] = check_alex_frame_dualcam(file, file_type);
     end
-end
+%end
 % 3. load the movie according to the specified read-in routine
 if file_type == 3
     [movie, info, total_frames, current_movie, breakpoint] = tifread_chunks(file, info, total_frames, frame_number, current_movie, rerun, breakpoint);
